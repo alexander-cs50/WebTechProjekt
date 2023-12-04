@@ -4,7 +4,11 @@ const temperatureSchema = new Schema({
     recordedtemperature: { type: String, required: true },
     sensor: { type: String, required: true },
 
-}, { timestamps: true },
+}, { timestamps: true, timeseries: {
+    timeField: "createdAt",
+    metaField: "sensor",
+    granularity: "seconds"
+ }},
 );
 
 type Temperature = InferSchemaType<typeof temperatureSchema>;
