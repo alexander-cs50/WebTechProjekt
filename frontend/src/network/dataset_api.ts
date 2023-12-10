@@ -1,7 +1,7 @@
 import { Temperature } from "../models/temperature";
 
 
-export async function getTemperature(): Promise<Temperature> {
+export async function getTemperature(): Promise<Temperature[]> {
     const response = await fetch("api/temps", { method: "GET"});
     if ( response.ok ) {
         return response.json();
