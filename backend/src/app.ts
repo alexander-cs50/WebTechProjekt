@@ -3,6 +3,7 @@ import express, { NextFunction, Request, Response } from "express"; //import exp
 import temperatureRoutes from "./routes/temperatureroute";
 import createHttpError, { isHttpError } from "http-errors";
 
+
 const app = express();
 
 app.use(express.json()); //This makes it so we send json files from our server to the DB

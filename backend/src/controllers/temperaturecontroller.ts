@@ -2,6 +2,7 @@ import { RequestHandler } from "express";
 import TemperatureModel from "../models/Temperature";
 import createHttpError from "http-errors";
 
+
 interface CreateTemperatureDataBody {
   recordedtemperature?: string;
   sensor?: string;

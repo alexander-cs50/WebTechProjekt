@@ -30,7 +30,6 @@ return (
             {item.createdAt}
             {item.recordedtemperature}
             </li>
-          // Replace "name" with the property you want to display
         ))}
       </ul>
     </div>

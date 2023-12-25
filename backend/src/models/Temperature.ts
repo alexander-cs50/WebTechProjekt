@@ -1,12 +1,12 @@
 import { InferSchemaType, Schema, model } from "mongoose"; 
 
 const temperatureSchema = new Schema({
-    recordedtemperature: { type: String, required: true },
-    sensor: { type: String, required: true },
-
-}, { timestamps: true, timeseries: {
+    cid: { type: String, required: true },
+    data:  { type: String, required: true },
+    code: { type: String, required: true },
+  }, { timestamps: true, timeseries: {
     timeField: "createdAt",
-    metaField: "sensor",
+    metaField: "cid",
     granularity: "seconds"
  }},
 );
