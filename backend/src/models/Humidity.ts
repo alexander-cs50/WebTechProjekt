@@ -1,7 +1,8 @@
 import { InferSchemaType, Schema, model } from "mongoose"; 
 
-const temperatureSchema = new Schema({
+const humiditySchema = new Schema({
     cid: { type: String, required: true },
+    humidity:  { type: String, required: true },
     celsius:  { type: String, required: true },
     code: { type: String, required: true },
   }, { timestamps: true, timeseries: {
@@ -11,10 +12,10 @@ const temperatureSchema = new Schema({
  }},
 );
 
-type Temperature = InferSchemaType<typeof temperatureSchema>;
+type Humidity = InferSchemaType<typeof humiditySchema>;
 
 /**
-* MongoDB Model with the fields recorded_temperature and sensor, is a timeseries
+* MongoDB Model with the fields cid, data, code, is a timeseries
 */
-export default model<Temperature>("Temperature", temperatureSchema)
+export default model<Humidity>("Humidity", humiditySchema)
 

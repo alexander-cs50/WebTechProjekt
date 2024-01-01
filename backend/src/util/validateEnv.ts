@@ -5,4 +5,8 @@ export default cleanEnv(process.env, {                      //use the function t
     MONGO_CONNNECTION_STRING: str(),
     PORT: port(),
     SESSION_SECRET: str(),
+    SENSOR_LINK1: str(),
+    SENSOR_LINK2: str(),
+    SENSOR_LINK3: str(),
+    SENSOR_LINK8: str(),
 });
