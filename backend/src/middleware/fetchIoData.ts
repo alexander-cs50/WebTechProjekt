@@ -64,14 +64,14 @@ function convertHexToHumiditySensorHumdity(hexNr: string): number {
   const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
   const humdityBinNr: string = binNr.slice(0, 16); // get the first 16 bits
   const decNr: number = parseInt(humdityBinNr, 2);
-  return decNr*0.1;
+  return Math.round(decNr*0.1);
 }
 
 function convertHexToHumiditySensorDegrees(hexNr: string): number {
   const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
   const humdityBinNr: string = binNr.slice(32, 48); // get the bits from position 32 to 48
   const decNr: number = parseInt(humdityBinNr, 2);
-  return decNr*0.1;
+  return Math.round(decNr*0.1);
 }
 
 export default fetchDataAndStore;

@@ -6,3 +6,4 @@ export interface Temperature {
     updateAt: string,
 }
 
+// this is equivalent to the Temperature interface in the database

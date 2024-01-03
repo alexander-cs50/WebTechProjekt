@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json()); //This makes it so we send json files from our server to the DB
 
-app.use("/api/temps", temperatureRoutes);
+app.use("/api/sensor", temperatureRoutes);
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));  //Error handling via the http-errors package
