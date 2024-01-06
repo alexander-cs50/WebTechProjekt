@@ -19,19 +19,27 @@ const fetchDataAndStore = async (link: string, cidname: string) => {
       console.log(newTemperatureData);
       console.log("Data fetched and stored successfully");
     }
-    /*
+    
     else if (cidname === "SchwingungsSensor1") {
     const datavaluecleanedHum = (datavalue);
     const code = data.code;
+    const datavaluecelsiuscleaned = convertHexToVibrationSensorTemp(datavalue);
+    const datavaluevRmscleaned = convertHexToVibrationSensorvRms(datavalue);
+    const datavalueaPeakcleaned = convertHexToVibrationSensoraPeak(datavalue);
+    const datavalueaRMscleaned = convertHexToVibrationSensoraRms(datavalue);
+    const datavalueacrestcleaned = convertHexToVibrationSensorCrest(datavalue);
     const newTemperatureData = await TemperatureModel.create({
       cid: cid,
-      celsius: datavaluecleanedHum,
+      celsius: datavaluecelsiuscleaned,
+      vRms:datavaluevRmscleaned,
+      aPeak:datavalueaPeakcleaned,
+      aRMs:datavalueaRMscleaned,
+      crest:datavalueacrestcleaned,
       code: code,
     });
     console.log(newTemperatureData);
     console.log("Data fetched and stored successfully");
   } 
-  */
   else if (cidname === "LuftfeuchtigkeitsSensor1") {
     const datavaluehumcleaned = convertHexToHumiditySensorHumdity(datavalue);
     const datavaluedegreescleaned = convertHexToHumiditySensorDegrees(datavalue);
@@ -70,6 +78,41 @@ function convertHexToHumiditySensorHumdity(hexNr: string): number {
 function convertHexToHumiditySensorDegrees(hexNr: string): number {
   const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
   const humdityBinNr: string = binNr.slice(32, 48); // get the bits from position 32 to 48
+  const decNr: number = parseInt(humdityBinNr, 2);
+  return Math.round(decNr*0.1);
+}
+
+function convertHexToVibrationSensorvRms(hexNr: string): number {
+  const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
+  const humdityBinNr: string = binNr.slice(0, 16); // get the bits from position 32 to 48
+  const decNr: number = parseInt(humdityBinNr, 2);
+  return Math.round(decNr*0.0001);
+}
+
+function convertHexToVibrationSensoraPeak(hexNr: string): number {
+  const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
+  const humdityBinNr: string = binNr.slice(32, 48); // get the bits from position 32 to 48
+  const decNr: number = parseInt(humdityBinNr, 2);
+  return Math.round(decNr*0.1);
+}
+
+function convertHexToVibrationSensoraRms(hexNr: string): number {
+  const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
+  const humdityBinNr: string = binNr.slice(64, 80); // get the bits from position 32 to 48
+  const decNr: number = parseInt(humdityBinNr, 2);
+  return Math.round(decNr*0.1);
+}
+
+function convertHexToVibrationSensorTemp(hexNr: string): number {
+  const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
+  const humdityBinNr: string = binNr.slice(96, 112); // get the bits from position 32 to 48
+  const decNr: number = parseInt(humdityBinNr, 2);
+  return Math.round(decNr*0.1);
+}
+
+function convertHexToVibrationSensorCrest(hexNr: string): number {
+  const binNr: string = parseInt(hexNr, 16).toString(2).padStart(64, '0'); // pad with leading zeros
+  const humdityBinNr: string = binNr.slice(128, 144); // get the bits from position 32 to 48
   const decNr: number = parseInt(humdityBinNr, 2);
   return Math.round(decNr*0.1);
 }
