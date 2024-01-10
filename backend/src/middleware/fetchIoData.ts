@@ -119,12 +119,5 @@ function convertHexToVibrationSensorCrest(hexNr: string): number {
   return Math.round(decNr*0.1); // divide by 10 (Steigung 0.0001)
 }
 
-function convertHexToVibrationSensor(hexNr: string, start: number, end: number, factor: number): number {
-  const shorthex: string = hexNr.slice(start, end); // get the specified bits
-  const binNr: string = parseInt(shorthex, 16).toString(2); // convert to binary
-  const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr * factor); // multiply by the specified factor
-}
-
 
 export default fetchDataAndStore;
