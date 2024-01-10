@@ -23,11 +23,11 @@ const fetchDataAndStore = async (link: string, cidname: string) => {
     
     else if (cidname === "SchwingungsSensor1") {
     const code = data.code;
-    const datavaluecelsiuscleaned = convertHexToVibrationSensorTemp(datavalue);
-    const datavaluevRmscleaned = convertHexToVibrationSensorvRms(datavalue);
-    const datavalueaPeakcleaned = convertHexToVibrationSensoraPeak(datavalue);
-    const datavalueaRMscleaned = convertHexToVibrationSensoraRms(datavalue);
-    const datavalueacrestcleaned = convertHexToVibrationSensorCrest(datavalue);
+    const datavaluevRmscleaned = convertHexToVibrationSensor(datavalue, 0, 4, 0.0001);
+    const datavalueaPeakcleaned = convertHexToVibrationSensor(datavalue, 8, 12, 0.1);
+    const datavalueaRMscleaned = convertHexToVibrationSensor(datavalue, 16, 20, 0.1);
+    const datavaluecelsiuscleaned = convertHexToVibrationSensor(datavalue, 24, 28, 0.1);
+    const datavalueacrestcleaned = convertHexToVibrationSensor(datavalue, 32, 36, 0.1);
     const newTemperatureData = await VibrationModel.create({
       cid: cid,
       celsius: datavaluecelsiuscleaned,
@@ -78,46 +78,15 @@ function convertHexToHumiditySensorHumdity(hexNr: string): number {
 function convertHexToHumiditySensorDegrees(hexNr: string): number {
   const binNr: string = parseInt(hexNr, 16).toString(2)
   const humdityBinNr: string = binNr.slice(32, 48); // get the bits from position 32 to 48
-  const decNr: number = parseInt(humdityBinNr, 2);
-  return Math.round(decNr*0.1);
+  const decNr: number = parseInt(humdityBinNr, 2); // convert to decimal
+  return Math.round(decNr*0.1); // divide by 10 (Steigung 0.1)
 }
 
-function convertHexToVibrationSensorvRms(hexNr: string): number {
-  const shorthex: string = hexNr.slice(0, 4); // get the first 16 bits
-  const binNr: string = parseInt(shorthex, 16).toString(2) // convert to binary
+function convertHexToVibrationSensor(hexNr: string, start: number, end: number, factor: number): number {
+  const shorthex: string = hexNr.slice(start, end); // get the specified bits
+  const binNr: string = parseInt(shorthex, 16).toString(2); // convert to binary
   const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr*0.0001); // divide by 10 (Steigung 0.0001)
+  return Math.round(decNr * factor); // divide by the factor (Steigung gleich factor)
 }
-
-function convertHexToVibrationSensoraPeak(hexNr: string): number {
-  const shorthex: string = hexNr.slice(8, 12); // get the first 16 bits
-  const binNr: string = parseInt(shorthex, 16).toString(2) // convert to binary
-  const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr*0.1); // divide by 10 (Steigung 0.0001)
-}
-
-function convertHexToVibrationSensoraRms(hexNr: string): number {
-  const shorthex: string = hexNr.slice(16, 20); // get the first 16 bits
-  const binNr: string = parseInt(shorthex, 16).toString(2) // convert to binary
-  const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr*0.1); // divide by 10 (Steigung 0.0001)
-}
-
-
-function convertHexToVibrationSensorTemp(hexNr: string): number {
-  const shorthex: string = hexNr.slice(24, 28); // get the first 16 bits
-  const binNr: string = parseInt(shorthex, 16).toString(2) // convert to binary
-  const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr*0.1); // divide by 10 (Steigung 0.0001)
-}
-
-
-function convertHexToVibrationSensorCrest(hexNr: string): number {
-  const shorthex: string = hexNr.slice(32, 36); // get the first 16 bits
-  const binNr: string = parseInt(shorthex, 16).toString(2) // convert to binary
-  const decNr: number = parseInt(binNr, 2); // convert to decimal
-  return Math.round(decNr*0.1); // divide by 10 (Steigung 0.0001)
-}
-
 
 export default fetchDataAndStore;
