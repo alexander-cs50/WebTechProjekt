@@ -5,16 +5,16 @@ const temperatureSchema = new Schema({
     celsius:  { type: String, required: true },
     code: { type: String, required: true },
   }, { timestamps: true, timeseries: {
-    timeField: "createdAt",
+    timeField: "createdAt", //createdAt comes from timestamps
     metaField: "cid",
     granularity: "seconds"
  }},
 );
 
-type Temperature = InferSchemaType<typeof temperatureSchema>;
+type Temperature = InferSchemaType<typeof temperatureSchema>; // type for the model
 
 /**
-* MongoDB Model with the fields recorded_temperature and sensor, is a timeseries
-*/
+ * Temperature model with fields cid, celsius and code
+ */
 export default model<Temperature>("Temperature", temperatureSchema)
 

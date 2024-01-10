@@ -10,3 +10,4 @@ export default cleanEnv(process.env, {                      //use the function t
     SENSOR_LINK3: str(),
     SENSOR_LINK8: str(),
 });
+

@@ -6,16 +6,16 @@ const humiditySchema = new Schema({
     celsius:  { type: String, required: true },
     code: { type: String, required: true },
   }, { timestamps: true, timeseries: {
-    timeField: "createdAt",
+    timeField: "createdAt", //createdAt comes from timestamps
     metaField: "cid",
     granularity: "seconds"
  }},
 );
 
-type Humidity = InferSchemaType<typeof humiditySchema>;
+type Humidity = InferSchemaType<typeof humiditySchema>; // type for the model
 
 /**
-* MongoDB Model with the fields cid, data, code, is a timeseries
-*/
+ * Humidity model with fields cid, humidity, celsius and code
+ */
 export default model<Humidity>("Humidity", humiditySchema)
 

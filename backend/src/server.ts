@@ -1,20 +1,20 @@
 import app from "./app";
-import env from "./util/validateEnv";                                   //this completes the setup we did with envalid in validateEnv.ts and we now call the env environments only with env.
-import mongoose from "mongoose";                                        //import mongoose for mongoDB
+import env from "./util/validateEnv";    
+import mongoose from "mongoose";                                        
 import fetchDataAndStore from "./middleware/fetchIoData";
 
-const port = env.PORT;                                                  //port from .env folder as port variable so we dont have to write process.env.PORT everytime we want ot use it
+const port = env.PORT; //get the port from the env file                                             
 
-mongoose.connect(env.MONGO_CONNNECTION_STRING)                          //MongoDB connection string, we use the ! because it technically this variable could also not be a string, and mongoose does not like this
-    .then(() => {                                                       //Use this because mongoose.connect takes some time and this starts after connect is done
-        console.log("Mongoose connected");                              //obvious log entry
+mongoose.connect(env.MONGO_CONNNECTION_STRING) //connect to the database                      
+    .then(() => {                                                       
+        console.log("Mongoose connected"); //log if the connection was successful                        
         setInterval(() => fetchDataAndStore(env.SENSOR_LINK1,"TemperaturSensor1"), 10000);
         setInterval(() => fetchDataAndStore(env.SENSOR_LINK2,"TemperaturSensor2"), 10000);
-        //setInterval(() => fetchDataAndStore(env.SENSOR_LINK3,"SchwingungsSensor1"), 10000);
+        setInterval(() => fetchDataAndStore(env.SENSOR_LINK3,"SchwingungsSensor1"), 10000);
         setInterval(() => fetchDataAndStore(env.SENSOR_LINK8,"LuftfeuchtigkeitsSensor1"), 10000);
-        app.listen(port, () => {                                        //this was previously outside of these brackets but now its in because it makes no sense to do this when the database is not connected
-            console.log("Server running on port: " + port);             //obvious log entry
-        });
+        app.listen(port, () => {                                        
+            console.log("Server running on port: " + port);             
+        }); //start the server on the port from the env file
     })
-    .catch(console.error);                                              //this will be called if there is an error and will then dispaly the error itself in the console
+    .catch(console.error); //catch errors from the database connection and log them
 
