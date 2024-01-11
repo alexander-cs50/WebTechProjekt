@@ -60,7 +60,7 @@ const fetchDataAndStore = async (link: string, cidname: string) => {
 };
 
 function convertHexToCelsiusSensor(hexNr: string): number {
-  const binNr: string = parseInt(hexNr, 16).toString(2)
+  const binNr: string = parseInt(hexNr, 16).toString(2) // convert to binary
   const celsiusBinNr: string = binNr.slice(0, -2); // remove the last 2 bits
   const decNr: number = parseInt(celsiusBinNr, 2); // convert to decimal
   const fahrenheit: number = decNr / 10; //divide by 10 (Steigung 0.1)
@@ -69,14 +69,14 @@ function convertHexToCelsiusSensor(hexNr: string): number {
 }
 
 function convertHexToHumiditySensorHumdity(hexNr: string): number {
-  const binNr: string = parseInt(hexNr, 16).toString(2)
+  const binNr: string = parseInt(hexNr, 16).toString(2) // convert to binary
   const humdityBinNr: string = binNr.slice(0, 16); // get the first 16 bits
   const decNr: number = parseInt(humdityBinNr, 2); // convert to decimal
   return Math.round(decNr*0.1); // divide by 10 (Steigung 0.1)
 }
 
 function convertHexToHumiditySensorDegrees(hexNr: string): number {
-  const binNr: string = parseInt(hexNr, 16).toString(2)
+  const binNr: string = parseInt(hexNr, 16).toString(2) // convert to binary
   const humdityBinNr: string = binNr.slice(32, 48); // get the bits from position 32 to 48
   const decNr: number = parseInt(humdityBinNr, 2); // convert to decimal
   return Math.round(decNr*0.1); // divide by 10 (Steigung 0.1)
