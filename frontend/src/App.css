@@ -1,0 +1,261 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.temp-icon {
+  font-size: 140px;
+  color: rgba(42,113,140,1);
+}
+
+.Navcol {
+  background: black;
+}
+
+.offcanvas-body-row {
+  margin-top:100px;
+  font-size:24px;
+  font-weight:bold;
+  transition: 0.1s;
+  color:lightgrey;
+}
+
+.offcanvas-body-row:hover {
+  background: rgba(42,113,140,1);
+  transform: scale(1.05);
+  border-radius: 20px;
+  color:black;
+}
+
+.btn-close {
+  background-color: red; /* Ersetzen Sie 'red' durch die gewünschte Farbe */
+}
+
+.Hamburgermenu {
+  color:lightgrey;
+  font-size: 24px;
+}
+
+.Hamburgermenu:hover {
+  transform: scale(1.10);
+  color: rgba(42,113,140,1) ;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 80vh; /* oder die gewünschte Höhe */
+    opacity: 1;
+  }
+}
+.align-icon-text {
+  display: flex;
+  align-items: center; /* Zentriert die Elemente vertikal */
+  justify-content: center; /* Zentriert die Elemente horizontal */
+  width: 100%;
+  background-color:rgba(42,113,140,1) ;
+  border: none;
+  transition: 0.2s;
+}
+
+.align-icon-text:hover {
+  display: flex;
+  align-items: center; /* Zentriert die Elemente vertikal */
+  justify-content: center; /* Zentriert die Elemente horizontal */
+  width: 100%;
+  background: linear-gradient(180deg, rgba(17,42,55,1) 0%, rgba(24,49,63,1) 40%, rgba(33,81,95,1) 70%, rgba(42,113,140,1) 100%);
+  border: none;
+}
+
+.vl{
+  width: 6px; /* Breite der Linie */
+  height: 90%; /* Höhe der Linie */
+  background: linear-gradient(180deg, rgba(17,42,55,1) 0%, rgba(24,49,63,1) 40%, rgba(33,81,95,1) 70%, rgba(42,113,140,1) 100%);
+}
+@keyframes slideDown2 {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 80vh; /* oder die gewünschte Höhe */
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown3 {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 82%; /* oder die gewünschte Höhe */
+    opacity: 1;
+    box-shadow: 20px 20px 8px 0 rgba(0,0,0,0.2)
+
+  }
+}
+
+
+.card-content {
+  margin-bottom: 25px; /* oder ein beliebiger anderer Wert */
+}
+
+.card-text {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.card-shadow {
+  box-shadow: 20px 20px 8px 0 rgba(0,0,0,0.2); /* Horizontaler Versatz, vertikaler Versatz, Unschärferadius, Spread-Radius, Farbe */
+  transition: 0.3s; /* Optional: für eine sanfte Hover-Animation */
+}
+
+.card-shadow:hover {
+  transform: scale(1.10);
+  box-shadow: 20px 20px 8px 8px rgba(0,0,0,0.2); /* Vergrößerter Schatten beim Darüberfahren mit der Maus */
+
+}
+.button-text {
+  margin-left: 5px; /* Fügt einen kleinen Abstand zwischen Icon und Text hinzu */
+}
+
+.card-content1 {
+  margin-top: 10% /* oder ein beliebiger anderer Wert */
+}
+
+.card-content2 {
+  margin-top: 30% /* oder ein beliebiger anderer Wert */
+}
+
+.card-shadow2 {
+  box-shadow: 20px 20px 8px 0 rgba(0,0,0,0.2); /* Horizontaler Versatz, vertikaler Versatz, Unschärferadius, Spread-Radius, Farbe */
+  transition: 0.3s; /* Optional: für eine sanfte Hover-Animation */
+}
+
+.sensorText {
+  font-size: 16px;
+  margin-top: -20px;
+  opacity: 0.4;
+  color: black;
+}
+
+.appTitle{
+  font-size: 24px;
+  color: lightgray;
+  display: flex;
+  justify-content: start;
+  margin-left: 20px;
+}
+.appTitle:hover{
+  transform: scaleY(1.15);
+  font-size: 24px;
+  color: rgba(42,113,140,1);
+  display: flex;
+  justify-content: start;
+  margin-left: 20px;
+
+}
+
+.chartButton {
+  width: 20%;
+  height: 40px;
+  background:rgba(42,113,140,1);
+  border: none;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.chartButton.grayedOut {
+  background: #ccc; /* Graue Farbe für inaktive Buttons */
+  border-color: #ccc;
+  color: #666; /* Dunkelgraue Schriftfarbe */
+}
+
+.chartButton:hover {
+  border: none;
+  background:rgba(42,113,140,1);
+}
+
+/* Stile für den Hover-Effekt auf ausgegraute Buttons */
+.chartButton.grayedOut:hover {
+  background: rgba(42,113,140,1);
+  border-color: #ccc;
+  color: white;
+}
+
+.chartDateForm{
+  width: 20%;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.not-found-icon {
+  font-size: 12rem; /* Größe des Icons */
+  color: grey;
+}
+
+.not-found-404 {
+  font-size: 8rem;
+  color: grey;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.not-found-text {
+  font-size: 1.5rem;
+  color: grey;
+  margin-bottom: 20px;
+}
+
+.not-found-btn{
+  background: linear-gradient(180deg, rgba(17,42,55,1) 0%, rgba(24,49,63,1) 40%, rgba(33,81,95,1) 70%, rgba(42,113,140,1) 100%);
+  border: none;
+  box-shadow: 8px 8px 8px 0 rgba(0,0,0,0.2);
+}
+
+.not-found-btn:hover{
+  transform: scale(1.15);
+  box-shadow: 10px 10px 10px 0 rgba(0,0,0,0.2);
+}
