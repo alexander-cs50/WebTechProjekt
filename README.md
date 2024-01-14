@@ -1,4 +1,4 @@
-1. Clone the project
+1. Clone the project in VSCode
 2. Make sure Node JS is installed
 3. Make sure you have the folder open and can see the frontend and backend folder
 4. Add the .env file to the source of the backend folder
