@@ -33,6 +33,9 @@ function Vibration() {
         XLSX.writeFile(workbook, `${fileName}.xlsx`);
     };
 
+     useEffect( () => {
+        updateChartData(vibration, 'today'); // Initialwerte für die Grafik
+    }, [])
 
     useEffect(() => {
         async function loadVibrations() {
@@ -43,7 +46,6 @@ function Vibration() {
                     const latestHum = vib[vib.length - 1]; // Annahme, dass das neueste Datum zuerst kommt
                     setLatestVibration(latestHum);
                 }
-                updateChartData(vib, 'today'); // Initialwerte für die Grafik
             } catch (error) {
                 console.error(error);
             } finally {
