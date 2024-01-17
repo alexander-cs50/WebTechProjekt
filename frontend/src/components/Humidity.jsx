@@ -34,7 +34,10 @@ function Humidity() {
         XLSX.writeFile(workbook, `${fileName}.xlsx`);
     };
 
-
+       useEffect( ()=> {
+        updateChartData(humidity, 'today');
+    }, [])
+    
     useEffect(() => {
         async function loadHumidity() {
             try {
@@ -44,7 +47,6 @@ function Humidity() {
                     const latestHum = hum[hum.length - 1];
                     setLatestHumidity(latestHum);
                 }
-                updateChartData(hum, 'today');
             } catch (error) {
                 console.error(error);
             }finally {
