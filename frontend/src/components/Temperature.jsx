@@ -87,6 +87,11 @@ function Temperature() {
         XLSX.writeFile(workbook, `${fileName}.xlsx`);
     };
 
+    
+    useEffect( ()=> {
+        updateChartData(temperatures, 'today'); // Initialwerte für die Grafik
+    }, [])
+    
     // Initialising and updating data for page --- Live values for 2 sensors !!!
     useEffect(() => {
         async function loadTemperatures() {
@@ -100,7 +105,6 @@ function Temperature() {
                     setLatestTemperatureSensor1(latestTempSensor1);
                     setLatestTemperatureSensor2(latestTempSensor2);
                 }
-                updateChartData(temps, 'today');
             } catch (error) {
                 console.error(error);
             } finally {
